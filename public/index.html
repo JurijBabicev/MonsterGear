@@ -16,6 +16,7 @@
     
     <!-- SEO Primary Meta Tags -->
     <title>Monster Gear Kids Garage | Open Source Toy Cars & RC Projects</title>
+    <link rel="icon" type="image/png" sizes="32x32" href="images/monstergearfavicon.png">
     <meta name="description" content="Explore Monster Gear Kids Garage: an open-source project for children's toy cars. Built as a Harvard CS50x final submission.">
     <link rel="canonical" href="https://monstergear.co.uk/">
 
@@ -47,13 +48,40 @@
             margin-bottom: 25px;
         }
         .logo-container img {
-            max-width: 380px;
+            max-width: 290px;
             height: auto;
             border-radius: 8px;
         }
         h1 { font-size: 2.2rem; margin-bottom: 15px; }
-        p { color: #444; font-size: 1.1rem; margin-bottom: 20px; }
-        footer { margin-top: 60px; font-size: 0.9rem; color: #666; border-top: 1px solid #eaeaea; padding-top: 20px; }
+        .text-top { color: #444; font-size: 1.1rem; margin-bottom: 20px; }
+        .cornerbit {
+            width: 100px;
+        }
+        .flex-container {
+            display: flex;
+            flex-direction: row;
+        }
+        footer { margin-top: 60px;
+                    
+                   
+                    font-size: 0.9rem;
+                    /* color: #666; */
+                    /* border-top: 1px solid #eaeaea;  */
+                    /* padding-top: 20px;  */
+                    background-image: linear-gradient(to bottom, #fff 0% 39%, #ef570a);
+                    border-top: 4px solid #FFC126;
+                    border-bottom: 4px solid #FFC126;
+                    padding: 1rem;
+                    color: #222;
+                
+                }
+
+        @media screen and (max-width: 690px) {
+            .flex-container {
+            display: flex;
+            flex-direction: column;
+        }
+        }
     </style>
 </head>
 <body>
@@ -64,11 +92,26 @@
 
     <main>
         <h1>Monster Gear Kids Garage</h1>
-        <p>Monster Gear is an open-source educational project for children's toy cars and RC models. Currently under active development as a final submission for Harvard Computer Science (CS50x), it is dedicated entirely to helping any kid showcase their ultimate dream garage.</p>
+        <p class="text-top">Monster Gear is an open-source educational project for children's toy cars and RC models. Currently under active development as a final submission for <a href="https://extension.harvard.edu/" title="Harvard" target="_blank" style="color: #222">Harvard Computer Science (CS50x)</a>, it is dedicated entirely to helping any kid showcase their ultimate dream garage.</p>
+        <p class="text-top">Proudly sponsored by <a href="https://www.cornerbit.co.uk" title="www.cornerbit.co.uk" target="_blank" style="color: #0B1C3A">CornerBit Ltd</a>, who kindly provided the domain and infrastructure, with special thanks to Professor David J. Malan and the CS50 team for the knowledge used to build this project.</p>    
     </main>
 
-    <footer>
-        <p>Proudly sponsored by CornerBit Ltd, who kindly provided the domain and infrastructure, with special thanks to Professor David J. Malan and the CS50 team for the knowledge used to build this project.</p>
+    <footer class="flex-container">
+        <div style="display: flex; flex-direction: column;">
+            <img src="images/cornerbit_sq_Reg.png" class="cornerbit">
+        </div>
+
+        <div>
+            <!-- Projekto autorystė -->
+            <p>© 2026 Monster Gear Kids Garage. An open-source educational project.</p>
+            
+            <!-- Rėmėjo / infrastruktūros teikėjo teisinė informacija -->
+            <div style="font-size: 0.9rem; margin-top: 10px;">
+                <p>Infrastructure and domain provided by <a href="https://www.cornerbit.co.uk" target="_blank" style="color: #222";text-decoration: none;>CornerBit Ltd</a>.</p>
+                <p>CornerBit Ltd. Registered in England & Wales | Company No. 16786673</p>
+                <p>© 2025-2026 CornerBit Ltd - All rights reserved. CornerBit® is a registered trademark of CornerBit Ltd. CornerSpot™ and CornerBook™ are trademarks of CornerBit Ltd.</p>
+            </div>
+        </div>
     </footer>
 
 </body>
