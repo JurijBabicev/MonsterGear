@@ -67,11 +67,13 @@
             overflow: hidden;
         }
 
-        /* Dekoratyvinis tinklelis fone */
         .left-panel::before {
             content: "";
             position: absolute;
-            top: 0; left: 0; right: 0; bottom: 0;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
             background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
             background-size: 24px 24px;
             pointer-events: none;
@@ -117,7 +119,7 @@
             line-height: 1.2;
             margin-bottom: 14px;
             background: linear-gradient(90deg, #ffffff, #cbd5e1);
-            background-clip: text;
+            -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
@@ -132,42 +134,53 @@
             max-width: 580px;
             margin: 10px auto;
             z-index: 2;
+            cursor: pointer;
+            user-select: none;
         }
 
         /* Mašinėlės animacijos */
         .car-body {
             animation: bounce 0.6s ease-in-out infinite alternate;
+            transform-box: fill-box;
             transform-origin: center;
         }
 
         .wheel {
             animation: spin 2.5s linear infinite;
-        }
-        .wheel-front { transform-origin: 365px 215px; }
-        .wheel-back { transform-origin: 155px 215px; }
-
-        .exhaust-smoke, .exhaust-smoke-2 {
             transform-box: fill-box;
             transform-origin: center;
         }
-        
+
+        .exhaust-smoke,
+        .exhaust-smoke-2 {
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+
         .exhaust-smoke {
             animation: puff 1.5s ease-out infinite;
         }
-        
+
         .exhaust-smoke-2 {
             animation: puff 1.5s ease-out 0.75s infinite;
         }
-        
-        @keyframes puff {
-            0% { 
-                opacity: 0.8; 
-                transform: translate(0px, 0px) scale(0.6); 
-            }
-            100% { 
-                opacity: 0; 
-                transform: translate(-70px, -60px) scale(1.8); 
-            }
+
+        /* Turbo režimas paspaudus (2s) */
+        .svg-stage.turbo .car-body {
+            animation: turbo-bounce 0.18s ease-in-out infinite alternate;
+        }
+
+        .svg-stage.turbo .wheel {
+            animation-duration: 0.35s;
+        }
+
+        .svg-stage.turbo .exhaust-smoke {
+            animation-duration: 0.45s;
+        }
+
+        .svg-stage.turbo .exhaust-smoke-2 {
+            animation-duration: 0.45s;
+            animation-delay: 0.22s;
         }
 
         @keyframes bounce {
@@ -175,11 +188,25 @@
             100% { transform: translateY(-5px) rotate(-0.8deg); }
         }
 
+        @keyframes turbo-bounce {
+            0% { transform: translateY(0px) rotate(-1deg) scale(1.02); }
+            100% { transform: translateY(-8px) rotate(1.2deg) scale(1.02); }
+        }
+
         @keyframes spin {
             100% { transform: rotate(360deg); }
         }
 
-        
+        @keyframes puff {
+            0% {
+                opacity: 0.8;
+                transform: translate(0px, 0px) scale(0.6);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(-55px, -45px) scale(1.8);
+            }
+        }
 
         .left-footer {
             font-size: 0.85rem;
@@ -284,8 +311,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            
-            /* Pradinė paslėpta būsena */
             opacity: 0;
             transform: translateY(-10px);
             pointer-events: none;
@@ -314,7 +339,8 @@
             body {
                 flex-direction: column;
             }
-            .left-panel, .right-panel {
+            .left-panel,
+            .right-panel {
                 width: 100%;
             }
             .left-panel {
@@ -352,15 +378,15 @@
         </div>
 
         <!-- Žaisminga SVG mašinėlė (Monster Truck) -->
-        <div class="svg-stage">
+        <div class="svg-stage" title="Click the truck for a turbo boost!">
             <svg viewBox="0 0 520 280" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
                 <!-- Kelias / šešėlis -->
                 <ellipse cx="260" cy="258" rx="200" ry="10" fill="rgba(0,0,0,0.45)" />
                 <line x1="40" y1="258" x2="480" y2="258" stroke="#3b4259" stroke-width="3" stroke-linecap="round" stroke-dasharray="18 14" />
 
                 <!-- Išmetamosios dujos -->
-                <circle class="exhaust-smoke" cx="85" cy="145" r="10" fill="#94a3b8" />
-                <circle class="exhaust-smoke-2" cx="80" cy="140" r="8" fill="#cbd5e1" />
+                <circle class="exhaust-smoke" cx="78" cy="132" r="10" fill="#94a3b8" />
+                <circle class="exhaust-smoke-2" cx="74" cy="128" r="8" fill="#cbd5e1" />
 
                 <!-- Pakaba / Amortizatoriai -->
                 <g stroke="#94a3b8" stroke-width="6" stroke-linecap="round">
@@ -369,11 +395,10 @@
                     <line x1="365" y1="215" x2="335" y2="155" />
                     <line x1="365" y1="215" x2="385" y2="155" />
                 </g>
-                <!-- Spyruoklės (oranžinės) -->
                 <line x1="168" y1="190" x2="178" y2="168" stroke="#ff5722" stroke-width="8" stroke-dasharray="4 3" />
                 <line x1="352" y1="190" x2="342" y2="168" stroke="#ff5722" stroke-width="8" stroke-dasharray="4 3" />
 
-                <!-- Automobilio kėbulas (šokinėjantis) -->
+                <!-- Automobilio kėbulas -->
                 <g class="car-body">
                     <!-- RC Antena -->
                     <path d="M 140 95 Q 115 45 95 25" fill="none" stroke="#cbd5e1" stroke-width="3" stroke-linecap="round" />
@@ -385,14 +410,13 @@
                     <!-- Pagrindinis kėbulas -->
                     <path d="M 105 150 L 115 115 L 175 115 L 210 75 L 315 75 L 350 115 L 415 122 C 425 124 430 132 430 142 L 430 155 L 395 155 C 385 130 345 130 335 155 L 185 155 C 175 130 135 130 125 155 Z" fill="#ff5722" />
                     
-                    <!-- Žaisminga lenktynių juosta ir žaibas -->
+                    <!-- Lenktynių juosta ir žaibas -->
                     <path d="M 112 135 L 428 138 L 428 148 L 108 145 Z" fill="#ffb703" />
                     <polygon points="255,122 242,138 256,138 248,153 272,134 257,134" fill="#ffffff" />
 
                     <!-- Langai -->
                     <polygon points="215,83 255,83 255,112 190,112" fill="#38bdf8" />
                     <polygon points="265,83 310,83 338,112 265,112" fill="#38bdf8" />
-                    <!-- Lango atspindys -->
                     <line x1="222" y1="88" x2="205" y2="107" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.7" />
                     <line x1="275" y1="88" x2="268" y2="107" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.7" />
 
@@ -460,7 +484,7 @@
                 <button type="submit" class="btn-submit">Enter Garage</button>
             </form>
 
-            <!-- Išplaukiantis pranešimas -->
+            <!-- Išplaukiantis klaidos pranešimas -->
             <div id="statusMessage" class="alert-message" role="alert">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
                     <circle cx="12" cy="12" r="10"></circle>
@@ -473,23 +497,78 @@
     </aside>
 
     <script>
+        // Prisijungimo formos logika
         const loginForm = document.getElementById('loginForm');
         const loginBox = document.getElementById('loginBox');
         const statusMessage = document.getElementById('statusMessage');
 
         loginForm.addEventListener('submit', function(event) {
-            // Sustabdome standartinį formos perkrovimą
             event.preventDefault();
 
-            // Jei pranešimas jau buvo parodytas, trumpam nuimame klasę, kad animacija suveiktų iš naujo
             statusMessage.classList.remove('show');
             loginBox.classList.remove('shake');
 
-            // Trumpa pauzė imitacijai ir animacijos perkrovimui
             setTimeout(() => {
                 statusMessage.classList.add('show');
                 loginBox.classList.add('shake');
             }, 100);
+        });
+
+        // Grėsmingesnis signalas ir 2s turbo pagreitėjimas
+        const svgStage = document.querySelector('.svg-stage');
+        let audioCtx = null;
+        let turboTimeout = null;
+
+        function playHornTone(freq, duration, delaySec = 0) {
+            if (!audioCtx) {
+                const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+                audioCtx = new AudioContextClass();
+            }
+            if (audioCtx.state === 'suspended') {
+                audioCtx.resume();
+            }
+
+            const startTime = audioCtx.currentTime + delaySec;
+
+            const osc1 = audioCtx.createOscillator();
+            const osc2 = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc1.type = 'sawtooth';
+            osc2.type = 'triangle';
+
+            osc1.frequency.setValueAtTime(freq, startTime);
+            osc1.frequency.exponentialRampToValueAtTime(freq * 0.82, startTime + duration);
+
+            osc2.frequency.setValueAtTime(freq * 0.5, startTime);
+            osc2.frequency.exponentialRampToValueAtTime(freq * 0.42, startTime + duration);
+
+            gain.gain.setValueAtTime(0.001, startTime);
+            gain.gain.exponentialRampToValueAtTime(0.11, startTime + 0.03);
+            gain.gain.exponentialRampToValueAtTime(0.001, startTime + duration);
+
+            osc1.connect(gain);
+            osc2.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc1.start(startTime);
+            osc2.start(startTime);
+            osc1.stop(startTime + duration + 0.03);
+            osc2.stop(startTime + duration + 0.03);
+        }
+
+        svgStage.addEventListener('click', function() {
+            playHornTone(210, 0.22, 0);
+            playHornTone(165, 0.85, 0.28);
+
+            svgStage.classList.remove('turbo');
+            void svgStage.offsetWidth;
+            svgStage.classList.add('turbo');
+
+            clearTimeout(turboTimeout);
+            turboTimeout = setTimeout(() => {
+                svgStage.classList.remove('turbo');
+            }, 2000);
         });
     </script>
 
