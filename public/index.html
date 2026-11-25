@@ -15,104 +15,483 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Primary Meta Tags -->
-    <title>Monster Gear Kids Garage | Open Source Toy Cars & RC Projects</title>
-    <link rel="icon" type="image/png" sizes="32x32" href="images/monstergearfavicon.png">
-    <meta name="description" content="Explore Monster Gear Kids Garage: an open-source project for children's toy cars. Built as a Harvard CS50x final submission.">
+    <title>Monster Gear Kids Garage | Open Source Toy Car & RC Project</title>
+    <meta name="description" content="Monster Gear is an open-source educational project for children's toy cars and RC models. Developed as a Harvard CS50x final submission. Powered by CornerBit Ltd.">
+    <meta name="keywords" content="Monster Gear, Monster Gear Kids Garage, toy cars, RC models, open source project, Harvard CS50x, David J Malan">
     <link rel="canonical" href="https://monstergear.co.uk/">
 
-    <!-- Open Graph / Social Media Meta Tags (Facebook, LinkedIn, etc.) -->
+    <!-- Open Graph / Social Media Meta Tags -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://monstergear.co.uk/">
-    <meta property="og:title" content="Monster Gear Kids Garage | Open Source Toy Cars">
-    <meta property="og:description" content="Explore Monster Gear Kids Garage: an open-source project for children's toy cars. Built as a Harvard CS50x final submission.">
-    <meta property="og:image" content="https://monstergear.co.uk/images/monstergearlogo.jpg">
-
-    <!-- Twitter Card Meta Tags -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Monster Gear Kids Garage | Open Source Toy Cars">
-    <meta name="twitter:description" content="Explore Monster Gear Kids Garage: an open-source educational project for children's toy cars.">
-    <meta name="twitter:image" content="https://monstergear.co.uk/images/monstergearlogo.jpg">
+    <meta property="og:title" content="Monster Gear Kids Garage | Open Source Toy Car & RC Project">
+    <meta property="og:description" content="An open-source educational project for children's toy cars and RC models, developed as a Harvard CS50x final submission.">
     
-    <!-- Minimalist style / No external dependencies -->
     <style>
+        :root {
+            --primary-orange: #ff5722;
+            --primary-hover: #e64a19;
+            --dark-bg: #161925;
+            --dark-accent: #23283b;
+            --text-light: #f8f9fa;
+            --text-muted: #adb5bd;
+            --error-bg: #fff5f5;
+            --error-border: #feb2b2;
+            --error-text: #c53030;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
         body {
-            font-family: system-ui, -apple-system, sans-serif;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
             color: #222;
-            max-width: 800px;
-            margin: 60px auto;
-            padding: 0 20px;
-            text-align: center;
-        }
-        .logo-container {
-            margin-bottom: 25px;
-        }
-        .logo-container img {
-            max-width: 290px;
-            height: auto;
-            border-radius: 8px;
-        }
-        h1 { font-size: 2.2rem; margin-bottom: 15px; }
-        .text-top { color: #444; font-size: 1.1rem; margin-bottom: 20px; }
-        .cornerbit {
-            width: 100px;
-        }
-        .flex-container {
+            min-height: 100vh;
             display: flex;
-            flex-direction: row;
+            overflow-x: hidden;
         }
-        footer { margin-top: 60px;
-                    
-                   
-                    font-size: 0.9rem;
-                    /* color: #666; */
-                    /* border-top: 1px solid #eaeaea;  */
-                    /* padding-top: 20px;  */
-                    background-image: linear-gradient(to bottom, #fff 0% 39%, #ef570a);
-                    border-top: 4px solid #FFC126;
-                    border-bottom: 4px solid #FFC126;
-                    padding: 1rem;
-                    color: #222;
-                
-                }
 
-        @media screen and (max-width: 690px) {
-            .flex-container {
+        /* KAIRĖ PUSĖ - 70% */
+        .left-panel {
+            width: 70%;
+            background: radial-gradient(circle at top left, var(--dark-accent), var(--dark-bg));
+            color: var(--text-light);
+            padding: 40px 60px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow: hidden;
         }
+
+        /* Dekoratyvinis tinklelis fone */
+        .left-panel::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+            background-size: 24px 24px;
+            pointer-events: none;
+        }
+
+        .brand-header {
+            display: flex;
+            align-items: center;
+            gap: 25px;
+            z-index: 2;
+        }
+
+        .brand-header img {
+            max-width: 180px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .hero-text {
+            max-width: 650px;
+            margin-top: 20px;
+            z-index: 2;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 87, 34, 0.2);
+            color: #ff8a65;
+            border: 1px solid rgba(255, 87, 34, 0.4);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 14px;
+            background: linear-gradient(90deg, #ffffff, #cbd5e1);
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-text p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* SVG Mašinėlės konteineris */
+        .svg-stage {
+            width: 100%;
+            max-width: 580px;
+            margin: 10px auto;
+            z-index: 2;
+        }
+
+        /* Mašinėlės animacijos */
+        .car-body {
+            animation: bounce 0.6s ease-in-out infinite alternate;
+            transform-origin: center;
+        }
+
+        .wheel {
+            animation: spin 2.5s linear infinite;
+        }
+        .wheel-front { transform-origin: 365px 215px; }
+        .wheel-back { transform-origin: 155px 215px; }
+
+        .exhaust-smoke, .exhaust-smoke-2 {
+            transform-box: fill-box;
+            transform-origin: center;
+        }
+        
+        .exhaust-smoke {
+            animation: puff 1.5s ease-out infinite;
+        }
+        
+        .exhaust-smoke-2 {
+            animation: puff 1.5s ease-out 0.75s infinite;
+        }
+        
+        @keyframes puff {
+            0% { 
+                opacity: 0.8; 
+                transform: translate(0px, 0px) scale(0.6); 
+            }
+            100% { 
+                opacity: 0; 
+                transform: translate(-70px, -60px) scale(1.8); 
+            }
+        }
+
+        @keyframes bounce {
+            0% { transform: translateY(0px) rotate(0deg); }
+            100% { transform: translateY(-5px) rotate(-0.8deg); }
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        
+
+        .left-footer {
+            font-size: 0.85rem;
+            color: #7c859e;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding-top: 16px;
+            z-index: 2;
+        }
+
+        /* DEŠINĖ PUSĖ - 30% */
+        .right-panel {
+            width: 30%;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 35px;
+            box-shadow: -10px 0 30px rgba(0, 0, 0, 0.08);
+            z-index: 3;
+        }
+
+        .login-box {
+            width: 100%;
+            max-width: 320px;
+        }
+
+        .login-header {
+            margin-bottom: 28px;
+        }
+
+        .login-header h2 {
+            font-size: 1.75rem;
+            color: #161925;
+            margin-bottom: 6px;
+        }
+
+        .login-header p {
+            color: #64748b;
+            font-size: 0.95rem;
+        }
+
+        .form-group {
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 6px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary-orange);
+            box-shadow: 0 0 0 3px rgba(255, 87, 34, 0.15);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 13px;
+            background-color: var(--primary-orange);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            margin-top: 6px;
+        }
+
+        .btn-submit:hover {
+            background-color: var(--primary-hover);
+        }
+
+        .btn-submit:active {
+            transform: scale(0.98);
+        }
+
+        /* Išplaukiantis klaidos pranešimas */
+        .alert-message {
+            margin-top: 20px;
+            padding: 12px 14px;
+            background-color: var(--error-bg);
+            border: 1px solid var(--error-border);
+            border-left: 4px solid var(--error-text);
+            color: var(--error-text);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            
+            /* Pradinė paslėpta būsena */
+            opacity: 0;
+            transform: translateY(-10px);
+            pointer-events: none;
+            transition: opacity 0.35s ease, transform 0.35s ease;
+        }
+
+        .alert-message.show {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-6px); }
+            50% { transform: translateX(6px); }
+            75% { transform: translateX(-4px); }
+        }
+
+        .shake {
+            animation: shake 0.35s ease-in-out;
+        }
+
+        /* Pritaikymas planšetėms ir telefonams */
+        @media (max-width: 960px) {
+            body {
+                flex-direction: column;
+            }
+            .left-panel, .right-panel {
+                width: 100%;
+            }
+            .left-panel {
+                padding: 35px 25px;
+            }
+            .brand-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            h1 {
+                font-size: 2rem;
+            }
+            .right-panel {
+                padding: 50px 25px;
+            }
         }
     </style>
 </head>
 <body>
 
-    <header class="logo-container">
-        <img src="images/monstergearlogo.jpg" alt="Monster Gear Kids Garage Logo">
-    </header>
-
-    <main>
-        <h1>Monster Gear Kids Garage</h1>
-        <p class="text-top">Monster Gear is an open-source educational project for children's toy cars and RC models. Currently under active development as a final submission for <a href="https://extension.harvard.edu/" title="Harvard" target="_blank" style="color: #222">Harvard Computer Science (CS50x)</a>, it is dedicated entirely to helping any kid showcase their ultimate dream garage.</p>
-        <p class="text-top">Proudly sponsored by <a href="https://www.cornerbit.co.uk" title="www.cornerbit.co.uk" target="_blank" style="color: #0B1C3A">CornerBit Ltd</a>, who kindly provided the domain and infrastructure, with special thanks to Professor David J. Malan and the CS50 team for the knowledge used to build this project.</p>    
-    </main>
-
-    <footer class="flex-container">
-        <div style="display: flex; flex-direction: column;">
-            <img src="images/cornerbit_sq_Reg.png" class="cornerbit">
-        </div>
-
+    <!-- KAIRĖ PUSĖ (70%) -->
+    <section class="left-panel">
         <div>
-            <!-- Projekto autorystė -->
-            <p>© 2026 Monster Gear Kids Garage. An open-source educational project.</p>
-            
-            <!-- Rėmėjo / infrastruktūros teikėjo teisinė informacija -->
-            <div style="font-size: 0.9rem; margin-top: 10px;">
-                <p>Infrastructure and domain provided by <a href="https://www.cornerbit.co.uk" target="_blank" style="color: #222";text-decoration: none;>CornerBit Ltd</a>.</p>
-                <p>CornerBit Ltd. Registered in England & Wales | Company No. 16786673</p>
-                <p>© 2025-2026 CornerBit Ltd - All rights reserved. CornerBit® is a registered trademark of CornerBit Ltd. CornerSpot™ and CornerBook™ are trademarks of CornerBit Ltd.</p>
+            <header class="brand-header">
+                <img src="images/monstergearlogo.jpg" alt="Monster Gear Kids Garage Logo">
+                <div>
+                    <span class="badge">HARVARD CS50x PROJECT</span>
+                    <h1>Monster Gear Kids Garage</h1>
+                </div>
+            </header>
+
+            <div class="hero-text">
+                <p>Monster Gear is an open-source educational project for children's toy cars and RC models. Currently under active development, it is dedicated entirely to helping any kid showcase their ultimate dream garage.</p>
             </div>
         </div>
-    </footer>
+
+        <!-- Žaisminga SVG mašinėlė (Monster Truck) -->
+        <div class="svg-stage">
+            <svg viewBox="0 0 520 280" width="100%" height="auto" xmlns="http://www.w3.org/2000/svg">
+                <!-- Kelias / šešėlis -->
+                <ellipse cx="260" cy="258" rx="200" ry="10" fill="rgba(0,0,0,0.45)" />
+                <line x1="40" y1="258" x2="480" y2="258" stroke="#3b4259" stroke-width="3" stroke-linecap="round" stroke-dasharray="18 14" />
+
+                <!-- Išmetamosios dujos -->
+                <circle class="exhaust-smoke" cx="85" cy="145" r="10" fill="#94a3b8" />
+                <circle class="exhaust-smoke-2" cx="80" cy="140" r="8" fill="#cbd5e1" />
+
+                <!-- Pakaba / Amortizatoriai -->
+                <g stroke="#94a3b8" stroke-width="6" stroke-linecap="round">
+                    <line x1="155" y1="215" x2="185" y2="155" />
+                    <line x1="155" y1="215" x2="135" y2="155" />
+                    <line x1="365" y1="215" x2="335" y2="155" />
+                    <line x1="365" y1="215" x2="385" y2="155" />
+                </g>
+                <!-- Spyruoklės (oranžinės) -->
+                <line x1="168" y1="190" x2="178" y2="168" stroke="#ff5722" stroke-width="8" stroke-dasharray="4 3" />
+                <line x1="352" y1="190" x2="342" y2="168" stroke="#ff5722" stroke-width="8" stroke-dasharray="4 3" />
+
+                <!-- Automobilio kėbulas (šokinėjantis) -->
+                <g class="car-body">
+                    <!-- RC Antena -->
+                    <path d="M 140 95 Q 115 45 95 25" fill="none" stroke="#cbd5e1" stroke-width="3" stroke-linecap="round" />
+                    <circle cx="95" cy="25" r="5" fill="#ff5722" />
+
+                    <!-- Išmetimo vamzdis -->
+                    <path d="M 110 145 L 85 145 L 80 135" fill="none" stroke="#64748b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
+
+                    <!-- Pagrindinis kėbulas -->
+                    <path d="M 105 150 L 115 115 L 175 115 L 210 75 L 315 75 L 350 115 L 415 122 C 425 124 430 132 430 142 L 430 155 L 395 155 C 385 130 345 130 335 155 L 185 155 C 175 130 135 130 125 155 Z" fill="#ff5722" />
+                    
+                    <!-- Žaisminga lenktynių juosta ir žaibas -->
+                    <path d="M 112 135 L 428 138 L 428 148 L 108 145 Z" fill="#ffb703" />
+                    <polygon points="255,122 242,138 256,138 248,153 272,134 257,134" fill="#ffffff" />
+
+                    <!-- Langai -->
+                    <polygon points="215,83 255,83 255,112 190,112" fill="#38bdf8" />
+                    <polygon points="265,83 310,83 338,112 265,112" fill="#38bdf8" />
+                    <!-- Lango atspindys -->
+                    <line x1="222" y1="88" x2="205" y2="107" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.7" />
+                    <line x1="275" y1="88" x2="268" y2="107" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.7" />
+
+                    <!-- Priekinis žibintas ir šviesos spindulys -->
+                    <rect x="424" y="126" width="8" height="12" rx="3" fill="#fef08a" />
+                    <polygon points="432,126 495,110 495,152 432,138" fill="url(#headlight)" opacity="0.35" />
+
+                    <!-- Bamperiai -->
+                    <rect x="98" y="146" width="16" height="12" rx="4" fill="#334155" />
+                    <rect x="422" y="146" width="18" height="12" rx="4" fill="#334155" />
+                </g>
+
+                <!-- Galinis ratas -->
+                <g class="wheel wheel-back">
+                    <circle cx="155" cy="215" r="44" fill="#1e293b" stroke="#0f172a" stroke-width="6" stroke-dasharray="12 6" />
+                    <circle cx="155" cy="215" r="22" fill="#e2e8f0" />
+                    <circle cx="155" cy="215" r="9" fill="#ff5722" />
+                    <line x1="155" y1="193" x2="155" y2="237" stroke="#64748b" stroke-width="3" />
+                    <line x1="133" y1="215" x2="177" y2="215" stroke="#64748b" stroke-width="3" />
+                </g>
+
+                <!-- Priekinis ratas -->
+                <g class="wheel wheel-front">
+                    <circle cx="365" cy="215" r="44" fill="#1e293b" stroke="#0f172a" stroke-width="6" stroke-dasharray="12 6" />
+                    <circle cx="365" cy="215" r="22" fill="#e2e8f0" />
+                    <circle cx="365" cy="215" r="9" fill="#ff5722" />
+                    <line x1="365" y1="193" x2="365" y2="237" stroke="#64748b" stroke-width="3" />
+                    <line x1="343" y1="215" x2="387" y2="215" stroke="#64748b" stroke-width="3" />
+                </g>
+
+                <!-- Gradientas žibinto šviesai -->
+                <defs>
+                    <linearGradient id="headlight" x1="0%" y1="0%" x2="100%" y2="0%">
+                        <stop offset="0%" stop-color="#fef08a" stop-opacity="0.9" />
+                        <stop offset="100%" stop-color="#fef08a" stop-opacity="0" />
+                    </linearGradient>
+                </defs>
+            </svg>
+        </div>
+
+        <footer class="left-footer">
+            Proudly sponsored by <strong>CornerBit Ltd</strong>, who kindly provided the domain and infrastructure, with special thanks to Professor David J. Malan and the CS50 team for the knowledge used to build this project.
+        </footer>
+    </section>
+
+    <!-- DEŠINĖ PUSĖ (30%) -->
+    <aside class="right-panel">
+        <div class="login-box" id="loginBox">
+            <div class="login-header">
+                <h2>Garage Login</h2>
+                <p>Enter your credentials to access your RC & toy car collection.</p>
+            </div>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" id="email" name="email" placeholder="driver@monstergear.co.uk" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="••••••••" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Enter Garage</button>
+            </form>
+
+            <!-- Išplaukiantis pranešimas -->
+            <div id="statusMessage" class="alert-message" role="alert">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink: 0;">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <line x1="12" y1="8" x2="12" y2="12"></line>
+                    <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                </svg>
+                <span>User not found. Please check your email or try again later.</span>
+            </div>
+        </div>
+    </aside>
+
+    <script>
+        const loginForm = document.getElementById('loginForm');
+        const loginBox = document.getElementById('loginBox');
+        const statusMessage = document.getElementById('statusMessage');
+
+        loginForm.addEventListener('submit', function(event) {
+            // Sustabdome standartinį formos perkrovimą
+            event.preventDefault();
+
+            // Jei pranešimas jau buvo parodytas, trumpam nuimame klasę, kad animacija suveiktų iš naujo
+            statusMessage.classList.remove('show');
+            loginBox.classList.remove('shake');
+
+            // Trumpa pauzė imitacijai ir animacijos perkrovimui
+            setTimeout(() => {
+                statusMessage.classList.add('show');
+                loginBox.classList.add('shake');
+            }, 100);
+        });
+    </script>
 
 </body>
 </html>
